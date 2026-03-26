@@ -8,26 +8,28 @@ const google = createGoogleGenerativeAI({
   apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? "",
 });
 
+const fetchMaterialCostSchema = z.object({
+  material: z.string().describe("The name of the material (e.g., marble, hardwood)"),
+  quantity: z.number().describe("The quantity in square feet"),
+  quality: z.enum(["standard", "premium", "luxury"]).describe("Quality tier"),
+});
+
 const fetchMaterialCostTool = tool({
   description: "Fetch the cost estimate for a specific interior design material",
-  parameters: z.object({
-    material: z.string().describe("The name of the material (e.g., marble, hardwood)"),
-    quantity: z.number().describe("The quantity in square feet"),
-    quality: z.enum(["standard", "premium", "luxury"]).describe("Quality tier"),
-  }),
-  execute: async ({ material, quantity, quality }) => {
+  parameters: fetchMaterialCostSchema,
+  execute: async (params) => {
     const basePrices: Record<string, Record<string, number>> = {
       marble: { standard: 15, premium: 35, luxury: 80 },
       hardwood: { standard: 8, premium: 18, luxury: 45 },
       tile: { standard: 4, premium: 12, luxury: 30 },
       wallpaper: { standard: 2, premium: 6, luxury: 20 },
     };
-    const price = basePrices[material.toLowerCase()]?.[quality] ?? 10;
-    const total = price * quantity;
+    const price = basePrices[params.material.toLowerCase()]?.[params.quality] ?? 10;
+    const total = price * params.quantity;
     return {
-      material,
-      quantity,
-      quality,
+      material: params.material,
+      quantity: params.quantity,
+      quality: params.quality,
       pricePerSqFt: price,
       totalCost: total,
       currency: "USD",
@@ -35,15 +37,17 @@ const fetchMaterialCostTool = tool({
   },
 });
 
+const calculateEstimateSchema = z.object({
+  roomType: z.string().describe("Type of room (living room, bedroom, kitchen, etc.)"),
+  squareFootage: z.number().describe("Total square footage of the room"),
+  style: z.string().describe("Design style (modern, traditional, minimalist, etc.)"),
+  budget: z.enum(["basic", "mid-range", "luxury"]).describe("Budget tier"),
+});
+
 const calculateEstimateTool = tool({
   description: "Calculate a comprehensive interior design project estimate",
-  parameters: z.object({
-    roomType: z.string().describe("Type of room (living room, bedroom, kitchen, etc.)"),
-    squareFootage: z.number().describe("Total square footage of the room"),
-    style: z.string().describe("Design style (modern, traditional, minimalist, etc.)"),
-    budget: z.enum(["basic", "mid-range", "luxury"]).describe("Budget tier"),
-  }),
-  execute: async ({ roomType, squareFootage, style, budget }) => {
+  parameters: calculateEstimateSchema,
+  execute: async (params) => {
     const multipliers: Record<string, number> = { basic: 50, "mid-range": 120, luxury: 300 };
     const styleMultipliers: Record<string, number> = {
       minimalist: 0.9,
@@ -52,14 +56,14 @@ const calculateEstimateTool = tool({
       traditional: 1.2,
       luxury: 1.5,
     };
-    const baseRate = multipliers[budget] ?? 120;
-    const styleMultiplier = styleMultipliers[style.toLowerCase()] ?? 1.0;
-    const estimate = baseRate * squareFootage * styleMultiplier;
+    const baseRate = multipliers[params.budget] ?? 120;
+    const styleMultiplier = styleMultipliers[params.style.toLowerCase()] ?? 1.0;
+    const estimate = baseRate * params.squareFootage * styleMultiplier;
     return {
-      roomType,
-      squareFootage,
-      style,
-      budget,
+      roomType: params.roomType,
+      squareFootage: params.squareFootage,
+      style: params.style,
+      budget: params.budget,
       estimatedCost: Math.round(estimate),
       breakdown: {
         design: Math.round(estimate * 0.15),
@@ -69,9 +73,9 @@ const calculateEstimateTool = tool({
       },
       currency: "USD",
       timeline:
-        budget === "basic"
+        params.budget === "basic"
           ? "4-6 weeks"
-          : budget === "mid-range"
+          : params.budget === "mid-range"
           ? "8-12 weeks"
           : "16-24 weeks",
     };

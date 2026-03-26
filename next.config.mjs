@@ -16,9 +16,14 @@ const nextConfig = {
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      three: require.resolve("three"),
+      three: "three",
     };
     return config;
+  },
+  turbopack: {
+    resolveAlias: {
+      three: "three",
+    },
   },
 };
 
