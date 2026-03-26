@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Bot, Send } from "lucide-react";
-import { useChat } from "ai/react";
+import { useChat } from "@ai-sdk/react";
 import { usePathname } from "next/navigation";
 
 const WHATSAPP_NUMBER =

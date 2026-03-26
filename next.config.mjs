@@ -13,6 +13,13 @@ const nextConfig = {
     ],
   },
   serverExternalPackages: ["sharp", "plaiceholder"],
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      three: require.resolve("three"),
+    };
+    return config;
+  },
 };
 
 export default nextConfig;

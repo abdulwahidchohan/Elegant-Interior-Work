@@ -82,7 +82,7 @@ export async function POST(req: Request) {
   const { messages } = await req.json();
 
   const result = await streamText({
-    model: google("gemini-1.5-flash"),
+    model: google("gemini-2.0-flash"),
     system: `You are an expert AI concierge for Elegant Interior Work, a luxury interior design studio. 
 You help clients explore design options, understand project costs, and book consultations.
 Be sophisticated, knowledgeable, and inspire confidence. Use the available tools to provide accurate cost estimates.
