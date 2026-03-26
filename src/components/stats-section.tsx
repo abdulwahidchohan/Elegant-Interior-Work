@@ -15,8 +15,8 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   
   const springValue = useSpring(0, {
-    stiffness: 40,
-    damping: 20,
+    stiffness: 60,
+    damping: 25,
     restDelta: 0.001
   });
 
@@ -45,7 +45,7 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 
 export function StatsSection() {
   return (
-    <section className="py-20 bg-background border-y border-border/50">
+    <section className="py-24 bg-background border-y border-border/50">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
@@ -54,13 +54,17 @@ export function StatsSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+              transition={{ 
+                duration: 0.8,
+                delay: index * 0.1,
+                ease: [0.23, 1, 0.32, 1]
+              }}
               className="text-center"
             >
               <div className="font-serif text-4xl md:text-5xl font-bold text-primary mb-2">
                 <Counter value={stat.value} suffix={stat.suffix} />
               </div>
-              <p className="text-sm font-medium tracking-widest text-muted-foreground uppercase">
+              <p className="text-xs font-semibold tracking-[0.3em] text-muted-foreground uppercase">
                 {stat.label}
               </p>
             </motion.div>

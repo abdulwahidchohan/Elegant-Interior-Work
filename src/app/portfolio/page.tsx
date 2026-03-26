@@ -13,7 +13,7 @@ export default function PortfolioPage() {
     <div className="min-h-screen pt-20">
       <div className="container mx-auto px-4 py-12">
         <div className="text-center mb-16">
-          <p className="text-sm font-medium tracking-widest text-primary uppercase mb-4">
+          <p className="text-xs font-semibold tracking-[0.3em] text-primary uppercase mb-4">
             Our Work
           </p>
           <h1 className="font-serif text-5xl md:text-7xl font-bold mb-6">

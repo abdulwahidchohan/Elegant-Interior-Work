@@ -108,6 +108,9 @@ export function BeforeAfterSlider({
           onTouchStart={handleTouchStart}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+          aria-label="Drag to compare before and after"
+          title="Drag to compare"
           className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center cursor-grab active:cursor-grabbing"
         >
           <GripVertical className="h-5 w-5 text-gray-600" />
@@ -115,10 +118,10 @@ export function BeforeAfterSlider({
       </div>
 
       {/* Labels */}
-      <div className="absolute top-3 left-3 px-2 py-1 rounded bg-black/50 text-white text-xs font-medium pointer-events-none">
+      <div className="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-[0.3em] uppercase pointer-events-none">
         {beforeLabel}
       </div>
-      <div className="absolute top-3 right-3 px-2 py-1 rounded bg-black/50 text-white text-xs font-medium pointer-events-none">
+      <div className="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white text-[10px] font-bold tracking-[0.3em] uppercase pointer-events-none">
         {afterLabel}
       </div>
     </div>

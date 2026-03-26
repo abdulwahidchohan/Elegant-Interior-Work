@@ -34,7 +34,7 @@ export default async function ProjectPage({ params }: PageProps) {
         </div>
         {project.beforeImageUrl && project.afterImageUrl && (
           <div className="mb-12">
-            <h2 className="font-serif text-3xl font-bold mb-6">Before &amp; After</h2>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold mb-6">Before & After</h2>
             <BeforeAfterSlider
               beforeImage={project.beforeImageUrl}
               afterImage={project.afterImageUrl}

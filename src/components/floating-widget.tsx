@@ -53,8 +53,8 @@ export function FloatingWidget() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="w-80 md:w-96 bg-background border border-border rounded-2xl shadow-2xl overflow-hidden"
+            transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+            className="w-80 md:w-96 bg-background/90 backdrop-blur-xl border border-border shadow-2xl rounded-3xl overflow-hidden mb-4"
           >
             <div className="p-4 border-b border-border flex items-center justify-between">
               <div className="flex gap-2">
@@ -81,6 +81,8 @@ export function FloatingWidget() {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
+                aria-label="Close widget"
+                title="Close widget"
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 <X className="h-4 w-4" />
@@ -92,9 +94,11 @@ export function FloatingWidget() {
                 <div className="flex-1 overflow-y-auto p-4 space-y-3">
                   {messages.length === 0 ? (
                     <div className="text-center text-muted-foreground text-sm py-8">
-                      <Bot className="h-8 w-8 mx-auto mb-3 text-primary" />
-                      <p className="font-medium">AI Design Concierge</p>
-                      <p className="text-xs mt-1">
+                      <Bot className="h-10 w-10 mx-auto mb-4 text-primary" />
+                      <p className="text-xs font-semibold tracking-[0.3em] text-primary uppercase mb-2">
+                        AI Design Concierge
+                      </p>
+                      <p className="text-xs text-muted-foreground">
                         Ask me about materials, costs, or design ideas!
                       </p>
                     </div>
@@ -154,6 +158,8 @@ export function FloatingWidget() {
                   <button
                     type="submit"
                     disabled={isLoading || !input.trim()}
+                    aria-label="Send message"
+                    title="Send message"
                     className="p-2 bg-primary text-primary-foreground rounded-xl disabled:opacity-50 transition-opacity"
                   >
                     <Send className="h-4 w-4" />
@@ -162,10 +168,12 @@ export function FloatingWidget() {
               </div>
             ) : (
               <div className="p-6 text-center">
-                <div className="w-14 h-14 rounded-full bg-[#25D366]/10 flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 rounded-full bg-[#25D366]/10 flex items-center justify-center mx-auto mb-4">
                   <WhatsAppIcon />
                 </div>
-                <h3 className="font-semibold mb-2">Chat on WhatsApp</h3>
+                <p className="text-xs font-semibold tracking-[0.3em] text-[#25D366] uppercase mb-4">
+                  WhatsApp Support
+                </p>
                 <p className="text-muted-foreground text-sm mb-4">
                   Connect instantly with our design team via WhatsApp.
                 </p>

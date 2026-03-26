@@ -14,10 +14,10 @@ const partners = [
 
 export function PartnersSection() {
   return (
-    <section className="py-20 bg-background overflow-hidden">
+    <section className="py-24 bg-background overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <p className="text-[10px] font-bold tracking-[0.3em] text-muted-foreground uppercase mb-2">
+          <p className="text-xs font-semibold tracking-[0.3em] text-muted-foreground uppercase mb-4">
             Trusted Partners
           </p>
           <div className="w-12 h-0.5 bg-primary/30 mx-auto" />
@@ -30,7 +30,11 @@ export function PartnersSection() {
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.05, duration: 0.4 }}
+              transition={{ 
+                duration: 0.6,
+                delay: index * 0.05,
+                ease: [0.23, 1, 0.32, 1]
+              }}
               className="partner-logo w-full max-w-[120px] aspect-[2/1] relative grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100"
             >
               <Image

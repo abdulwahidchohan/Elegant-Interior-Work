@@ -34,7 +34,7 @@ export function PanoramaViewer({ imageUrl }: { imageUrl: string }) {
           />
         </Suspense>
       </Canvas>
-      <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-md text-white text-[10px] px-2 py-1 rounded-full uppercase tracking-widest font-bold">
+      <div className="absolute bottom-6 left-6 bg-black/60 backdrop-blur-md text-white text-[10px] px-3 py-1.5 rounded-full uppercase tracking-[0.3em] font-bold border border-white/10">
         Interactive 360° View
       </div>
     </div>

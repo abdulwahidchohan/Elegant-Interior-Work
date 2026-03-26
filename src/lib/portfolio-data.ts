@@ -43,6 +43,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "An opulent master suite featuring custom millwork, plush textures, and bespoke lighting design.",
     imageUrl:
       "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
+    panoramaImageUrl: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80",
     blurDataURL:
       "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
     tags: ["luxury", "bedroom", "bespoke"],
@@ -58,6 +59,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "A culinary masterpiece with integrated smart appliances, waterfall island, and custom cabinetry.",
     imageUrl:
       "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
+    panoramaImageUrl: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
     blurDataURL:
       "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQQG/8QAHxAAAQMFAQEAAAAAAAAAAAAAAQACAxEEEiEx/8QAFAEBAAAAAAAAAAAAAAAAAAAAB//EABkRAQADAQEAAAAAAAAAAAAAAAEAAhExIf/aAAwDAQACEQMRAD8Amq1rZ7bK2WQIKykAeqlVPLRXTH0jKRbfnvSiDZAJYoN6n//Z",
     tags: ["contemporary", "kitchen", "smart home"],
@@ -73,6 +75,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "A spa-inspired sanctuary featuring natural stone, rainfall showers, and ambient lighting.",
     imageUrl:
       "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=800&q=80",
+    panoramaImageUrl: "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1200&q=80",
     blurDataURL:
       "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABAMG/8QAHxAAAgIBBQEAAAAAAAAAAAAAAQIDAAQREiEx/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAWEQEBAQAAAAAAAAAAAAAAAAAAAxH/2oAMAwEAAhEDEQA/AI7eSB2KHNZdONStT49xW3M7P0AO/wBBpH+FKUBqf//Z",
     tags: ["zen", "bathroom", "spa"],
@@ -88,6 +91,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "A sophisticated executive workspace that commands authority while maintaining comfort and style.",
     imageUrl:
       "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+    panoramaImageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
     blurDataURL:
       "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgQH/8QAHRAAAQQCAwAAAAAAAAAAAAAAAQACAxEEEiFC/8QAFAEBAAAAAAAAAAAAAAAAAAAAB//EABkRAQADAQEAAAAAAAAAAAAAAAEAAgMhMf/aAAwDAQACEQMRAD8Al7LdxLUlBK08qSAD28mrS3jUutbG8yRw8UoGgCLBWAT6KKAP/9k=",
     tags: ["commercial", "office", "executive"],
@@ -103,6 +107,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "An immersive arrival experience that sets the tone for the entire hotel journey.",
     imageUrl:
       "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80",
+    panoramaImageUrl: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1200&q=80",
     blurDataURL:
       "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAABgUEB//EAB8QAAIBBAMBAAAAAAAAAAAAAAECAwAEERIhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8A0NpWPDXaECTNsABopJZMbvOOBjnFV3mXSSZUPsUoAZcaoBHB96KKAf/Z",
     tags: ["hospitality", "hotel", "lobby"],

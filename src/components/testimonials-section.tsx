@@ -40,7 +40,7 @@ export function TestimonialsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-sm font-medium tracking-widest text-primary uppercase mb-4">
+          <p className="text-xs font-semibold tracking-[0.3em] text-primary uppercase mb-4">
             Client Love
           </p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold">
@@ -55,7 +55,11 @@ export function TestimonialsSection() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ 
+                duration: 0.6,
+                delay: index * 0.1,
+                ease: [0.23, 1, 0.32, 1]
+              }}
               className="p-6 rounded-2xl bg-card border border-border"
             >
               <Quote className="h-8 w-8 text-primary/30 mb-4" />

@@ -77,6 +77,9 @@ const config: Config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         shimmer: "shimmer 2s infinite linear",
       },
+      transitionTimingFunction: {
+        premium: "cubic-bezier(0.23, 1, 0.32, 1)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

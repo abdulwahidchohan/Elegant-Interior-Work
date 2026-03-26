@@ -63,7 +63,7 @@ export function ServicesSection() {
           }}
           className="text-center mb-16"
         >
-          <p className="text-sm font-medium tracking-widest text-primary uppercase mb-4">
+          <p className="text-xs font-semibold tracking-[0.3em] text-primary uppercase mb-4">
             What We Offer
           </p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4">

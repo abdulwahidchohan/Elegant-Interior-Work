@@ -85,22 +85,26 @@ export function ProjectModal({ project }: ProjectModalProps) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent rounded-t-3xl" />
             {project.panoramaImageUrl && !showPanorama && (
-              <button
+              <motion.button
                 onClick={() => setShowPanorama(true)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
                 className="absolute inset-0 flex items-center justify-center group/btn"
               >
-                <div className="flex flex-col items-center gap-3 px-6 py-4 bg-black/40 backdrop-blur-md rounded-2xl border border-white/20 group-hover/btn:bg-primary/60 transition-all">
+                <div className="flex flex-col items-center gap-3 px-8 py-5 bg-black/40 backdrop-blur-md rounded-2xl border border-white/20 group-hover/btn:bg-primary/70 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]">
                   <Play className="h-8 w-8 text-white fill-white" />
-                  <span className="text-white text-xs font-bold tracking-widest uppercase">Start 360° Experience</span>
+                  <span className="text-white text-[10px] font-bold tracking-[0.3em] uppercase">Start 360° Experience</span>
                 </div>
-              </button>
+              </motion.button>
             )}
             {showPanorama && project.panoramaImageUrl && (
               <div className="absolute inset-0 z-20">
                 <PanoramaViewer imageUrl={project.panoramaImageUrl} />
                 <button 
                   onClick={() => setShowPanorama(false)}
-                  className="absolute top-4 left-4 px-3 py-1.5 bg-black/60 backdrop-blur-md text-white rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-black/80 transition-colors"
+                  title="Exit 360 view"
+                  className="absolute top-6 left-6 px-4 py-2 bg-black/60 backdrop-blur-md text-white rounded-full text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-black/80 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] border border-white/10"
                 >
                   Exit 360°
                 </button>
@@ -145,8 +149,8 @@ export function ProjectModal({ project }: ProjectModalProps) {
 
             {project.beforeImageUrl && project.afterImageUrl && (
               <div className="mb-6">
-                <h3 className="font-serif text-2xl font-bold mb-4">
-                  Before &amp; After
+                <h3 className="font-serif text-3xl font-bold mb-6">
+                  Before & After
                 </h3>
                 <BeforeAfterSlider
                   beforeImage={project.beforeImageUrl}

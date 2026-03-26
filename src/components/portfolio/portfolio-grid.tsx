@@ -47,7 +47,11 @@ export function PortfolioGrid({ projects }: PortfolioGridProps) {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
+              transition={{ 
+                duration: 0.6,
+                delay: index * 0.05,
+                ease: [0.23, 1, 0.32, 1]
+              }}
               className="masonry-item"
             >
               <Link href={`/portfolio/${project.id}`} className="group block">
@@ -63,7 +67,7 @@ export function PortfolioGrid({ projects }: PortfolioGridProps) {
                       alt={project.title}
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-105"
                       placeholder="blur"
                       blurDataURL={project.blurDataURL}
                     />

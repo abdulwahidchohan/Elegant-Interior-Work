@@ -79,12 +79,19 @@ export function Navbar() {
               <Menu className="h-5 w-5" />
             )}
           </button>
-          <Link
-            href="#contact"
-            className="hidden md:flex items-center px-5 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+            className="hidden md:block"
           >
-            Get a Quote
-          </Link>
+            <Link
+              href="#contact"
+              className="flex items-center px-5 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
+            >
+              Get a Quote
+            </Link>
+          </motion.div>
         </div>
       </div>
 
@@ -111,7 +118,7 @@ export function Navbar() {
               </div>
               
               <div className="pt-6 border-t border-border/50">
-                <p className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase mb-4">
+                <p className="text-xs font-semibold tracking-[0.3em] text-muted-foreground uppercase mb-4">
                   Connect With Us
                 </p>
                 <div className="space-y-4">

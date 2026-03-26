@@ -19,19 +19,25 @@ export function PortfolioPreview() {
           className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4"
         >
           <div>
-            <p className="text-sm font-medium tracking-widest text-primary uppercase mb-4">
+            <p className="text-xs font-semibold tracking-[0.3em] text-primary uppercase mb-4">
               Featured Work
             </p>
             <h2 className="font-serif text-4xl md:text-5xl font-bold">
               Recent Projects
             </h2>
           </div>
-          <Link
-            href="/portfolio"
-            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all"
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
           >
-            View All Projects <ArrowRight className="h-4 w-4" />
-          </Link>
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
+            >
+              View All Projects <ArrowRight className="h-4 w-4" />
+            </Link>
+          </motion.div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

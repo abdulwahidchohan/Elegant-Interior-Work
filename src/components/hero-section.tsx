@@ -64,19 +64,31 @@ export function HeroSection() {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <Link
-                href="/portfolio"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all hover:gap-3"
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
               >
-                View Portfolio
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="#contact"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-white rounded-full font-medium hover:bg-white/20 transition-colors border border-white/20"
+                <Link
+                  href="/portfolio"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-medium hover:bg-primary/90 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] hover:gap-3"
+                >
+                  View Portfolio
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
               >
-                Book Consultation
-              </Link>
+                <Link
+                  href="#contact"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 text-white rounded-full font-medium hover:bg-white/20 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] border border-white/20"
+                >
+                  Book Consultation
+                </Link>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>

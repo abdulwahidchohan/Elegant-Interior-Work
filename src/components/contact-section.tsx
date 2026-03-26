@@ -32,7 +32,7 @@ export function ContactSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <p className="text-sm font-medium tracking-widest text-primary uppercase mb-4">
+          <p className="text-xs font-semibold tracking-[0.3em] text-primary uppercase mb-4">
             Get In Touch
           </p>
           <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4">
@@ -118,6 +118,7 @@ export function ContactSection() {
                   onChange={(e) =>
                     setFormState({ ...formState, service: e.target.value })
                   }
+                  aria-label="Select Service"
                   className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors"
                 >
                   <option value="residential">Residential Design</option>
@@ -134,10 +135,13 @@ export function ContactSection() {
                   rows={4}
                   className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors resize-none"
                 />
-                <button
+                <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] disabled:opacity-50"
                 >
                   {isSubmitting ? (
                     "Sending..."
@@ -146,7 +150,7 @@ export function ContactSection() {
                       Send Message <Send className="h-4 w-4" />
                     </>
                   )}
-                </button>
+                </motion.button>
               </form>
             )}
           </motion.div>
