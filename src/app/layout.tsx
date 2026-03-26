@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { ContactSidebar } from "@/components/contact-sidebar";
 import { FloatingWidget } from "@/components/floating-widget";
+import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
@@ -25,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -35,6 +36,9 @@ export default function RootLayout({
           <ContactSidebar />
           <Navbar />
           <main className="lg:pl-16">{children}</main>
+          <div className="lg:pl-16">
+            <Footer />
+          </div>
           <FloatingWidget />
           <Toaster />
         </ThemeProvider>

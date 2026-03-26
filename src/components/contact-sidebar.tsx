@@ -31,19 +31,21 @@ export function ContactSidebar() {
       variants={container}
       initial="hidden"
       animate="show"
-      className="fixed left-0 top-0 bottom-0 w-16 bg-background border-r border-border/40 z-50 flex flex-col items-center justify-between py-12 hidden lg:flex"
+      className="fixed left-0 top-0 bottom-0 w-16 bg-background border-r border-border/40 z-[100] flex flex-col items-center justify-between py-12 hidden lg:flex"
     >
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8 mt-20">
         {[
-          { icon: Camera, href: "#", label: "Instagram" },
-          { icon: MessageCircle, href: "#", label: "WhatsApp" },
-          { icon: Briefcase, href: "#", label: "LinkedIn" },
+          { icon: Camera, href: "https://instagram.com", label: "Instagram" },
+          { icon: MessageCircle, href: "https://wa.me/15551234567", label: "WhatsApp" },
+          { icon: Briefcase, href: "https://linkedin.com", label: "LinkedIn" },
         ].map(({ icon: Icon, href, label }) => (
           <motion.a
             key={label}
             href={href}
             variants={item}
             whileHover={{ scale: 1.2, color: "hsl(var(--primary))" }}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label={label}
             title={label}
             className="text-muted-foreground hover:text-primary transition-colors"

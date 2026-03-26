@@ -10,9 +10,9 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/portfolio", label: "Portfolio" },
-  { href: "#services", label: "Services" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -86,7 +86,7 @@ export function Navbar() {
             className="hidden md:block"
           >
             <Link
-              href="#contact"
+              href="/contact"
               className="flex items-center px-5 py-2.5 bg-primary text-primary-foreground rounded-full text-sm font-medium hover:bg-primary/90 transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
             >
               Get a Quote
