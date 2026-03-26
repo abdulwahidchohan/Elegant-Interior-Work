@@ -31,7 +31,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-2xl mx-auto glass rounded-3xl p-8 md:p-12 text-center"
+            className="max-w-2xl mx-auto bg-black/5 hover:bg-black/10 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12 text-center transition-all duration-1000"
           >
             <motion.p
               initial={{ opacity: 0 }}

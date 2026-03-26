@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const partners = [
-  { name: "Luxury Living", logo: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=200&h=100&fit=crop&q=80" },
-  { name: "Urban Build", logo: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=200&h=100&fit=crop&q=80" },
-  { name: "Modern Home", logo: "https://images.unsplash.com/photo-1614853316476-de00d14cb1fc?w=200&h=100&fit=crop&q=80" },
-  { name: "Design Plus", logo: "https://images.unsplash.com/photo-1614850523459-c2f4c699052e?w=200&h=100&fit=crop&q=80" },
-  { name: "Elite Interiors", logo: "https://images.unsplash.com/photo-1614850523537-831804b4070a?w=200&h=100&fit=crop&q=80" },
-  { name: "Prime Arch", logo: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=200&h=100&fit=crop&q=80" },
+  { name: "Aria Architects", logo: "https://images.unsplash.com/photo-1599305090598-fe179d501c27?w=300&h=150&fit=crop&q=80" }, // Minimal vector-style
+  { name: "Zenith Studio", logo: "https://images.unsplash.com/photo-1541888946425-d81bb19480c5?w=300&h=150&fit=crop&q=80" },
+  { name: "Nova Interior", logo: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=300&h=150&fit=crop&q=80" },
+  { name: "Luxe Materials", logo: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=300&h=150&fit=crop&q=80" },
+  { name: "Stark Structures", logo: "https://images.unsplash.com/photo-1503387762-592dea58fe21?w=300&h=150&fit=crop&q=80" },
+  { name: "Aether Design", logo: "https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=300&h=150&fit=crop&q=80" },
 ];
 
 export function PartnersSection() {
