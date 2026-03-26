@@ -12,9 +12,7 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    serverComponentsExternalPackages: ["sharp", "plaiceholder"],
-  },
+  serverExternalPackages: ["sharp", "plaiceholder"],
 };
 
 export default nextConfig;

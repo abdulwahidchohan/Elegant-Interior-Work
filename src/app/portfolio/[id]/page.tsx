@@ -4,11 +4,12 @@ import Image from "next/image";
 import { BeforeAfterSlider } from "@/components/portfolio/before-after-slider";
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default function ProjectPage({ params }: PageProps) {
-  const project = portfolioProjects.find((p) => p.id === params.id);
+export default async function ProjectPage({ params }: PageProps) {
+  const { id } = await params;
+  const project = portfolioProjects.find((p) => p.id === id);
 
   if (!project) {
     notFound();

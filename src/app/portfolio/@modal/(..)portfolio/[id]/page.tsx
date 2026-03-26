@@ -3,11 +3,12 @@ import { portfolioProjects } from "@/lib/portfolio-data";
 import { notFound } from "next/navigation";
 
 interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default function ModalPage({ params }: PageProps) {
-  const project = portfolioProjects.find((p) => p.id === params.id);
+export default async function ModalPage({ params }: PageProps) {
+  const { id } = await params;
+  const project = portfolioProjects.find((p) => p.id === id);
 
   if (!project) {
     notFound();
