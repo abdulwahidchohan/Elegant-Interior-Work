@@ -178,8 +178,8 @@ export function Scene() {
       gl={{ antialias: true, alpha: true }}
       className="w-full h-full"
     >
-      <color attach="background" args={[isDark ? "#0d1117" : "#1a1208"]} />
-      <fog attach="fog" args={[isDark ? "#0d1117" : "#1a1208", 10, 20]} />
+      <color attach="background" args={[isDark ? "#0d1117" : "#2c2416"]} />
+      <fog attach="fog" args={[isDark ? "#0d1117" : "#2c2416", 10, 20]} />
 
       <ambientLight intensity={isDark ? 0.3 : 0.5} />
       <directionalLight
