@@ -4,9 +4,23 @@ import { useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, MapPin, Calendar, Tag } from "lucide-react";
+import { X, MapPin, Calendar, Tag, Play } from "lucide-react";
 import type { PortfolioProject } from "@/lib/portfolio-data";
 import { BeforeAfterSlider } from "./before-after-slider";
+import { useState } from "react";
+import dynamic from "next/dynamic";
+
+const PanoramaViewer = dynamic(
+  () => import("./panorama-viewer").then((mod) => mod.PanoramaViewer),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-md">
+        <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+      </div>
+    )
+  }
+);
 
 interface ProjectModalProps {
   project: PortfolioProject;
@@ -14,6 +28,7 @@ interface ProjectModalProps {
 
 export function ProjectModal({ project }: ProjectModalProps) {
   const router = useRouter();
+  const [showPanorama, setShowPanorama] = useState(false);
 
   const handleClose = useCallback(() => {
     router.back();
@@ -41,10 +56,13 @@ export function ProjectModal({ project }: ProjectModalProps) {
         onClick={(e) => e.target === e.currentTarget && handleClose()}
       >
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          exit={{ opacity: 0, scale: 0.9, y: 30 }}
+          transition={{ 
+            duration: 0.6,
+            ease: [0.23, 1, 0.32, 1]
+          }}
           className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-background rounded-3xl"
         >
           <button
@@ -66,6 +84,28 @@ export function ProjectModal({ project }: ProjectModalProps) {
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent rounded-t-3xl" />
+            {project.panoramaImageUrl && !showPanorama && (
+              <button
+                onClick={() => setShowPanorama(true)}
+                className="absolute inset-0 flex items-center justify-center group/btn"
+              >
+                <div className="flex flex-col items-center gap-3 px-6 py-4 bg-black/40 backdrop-blur-md rounded-2xl border border-white/20 group-hover/btn:bg-primary/60 transition-all">
+                  <Play className="h-8 w-8 text-white fill-white" />
+                  <span className="text-white text-xs font-bold tracking-widest uppercase">Start 360° Experience</span>
+                </div>
+              </button>
+            )}
+            {showPanorama && project.panoramaImageUrl && (
+              <div className="absolute inset-0 z-20">
+                <PanoramaViewer imageUrl={project.panoramaImageUrl} />
+                <button 
+                  onClick={() => setShowPanorama(false)}
+                  className="absolute top-4 left-4 px-3 py-1.5 bg-black/60 backdrop-blur-md text-white rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-black/80 transition-colors"
+                >
+                  Exit 360°
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="p-6 md:p-8">

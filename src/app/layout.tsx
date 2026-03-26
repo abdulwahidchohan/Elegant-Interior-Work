@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
+import { ContactSidebar } from "@/components/contact-sidebar";
 import { FloatingWidget } from "@/components/floating-widget";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -31,8 +32,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <ContactSidebar />
           <Navbar />
-          <main>{children}</main>
+          <main className="lg:pl-16">{children}</main>
           <FloatingWidget />
           <Toaster />
         </ThemeProvider>

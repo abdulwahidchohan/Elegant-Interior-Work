@@ -11,6 +11,7 @@ export interface PortfolioProject {
   year: number;
   location: string;
   dominantColors?: string[];
+  panoramaImageUrl?: string;
 }
 
 export const portfolioProjects: PortfolioProject[] = [
@@ -22,6 +23,7 @@ export const portfolioProjects: PortfolioProject[] = [
       "A serene living space that balances form and function with clean lines and natural materials.",
     imageUrl:
       "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
+    panoramaImageUrl: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=80",
     blurDataURL:
       "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgUH/8QAIhAAAQMEAgMAAAAAAAAAAAAAAQIDBAAFERIhMUH/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8Amsy1kbHQy47dBnxFrPJLYB4PkEZIrF2rZNpZ/cYLLVtCWw2UFKlJUQkkgY7/ALSlKA//2Q==",
     beforeImageUrl:

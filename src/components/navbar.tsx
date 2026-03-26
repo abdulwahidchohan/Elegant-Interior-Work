@@ -33,7 +33,7 @@ export function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]",
         isScrolled ? "glass py-4" : "py-6"
       )}
     >
@@ -96,17 +96,45 @@ export function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden glass mt-2 mx-4 rounded-2xl overflow-hidden"
           >
-            <div className="p-4 space-y-3">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block py-2 text-sm font-medium"
-                >
-                  {link.label}
-                </Link>
-              ))}
+            <div className="p-4 space-y-6">
+              <div className="space-y-3">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block py-2 text-sm font-medium hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+              
+              <div className="pt-6 border-t border-border/50">
+                <p className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase mb-4">
+                  Connect With Us
+                </p>
+                <div className="space-y-4">
+                  <a
+                    href="mailto:hello@elegantinterior.work"
+                    className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+                      <span className="text-[10px]">@</span>
+                    </div>
+                    hello@elegantinterior.work
+                  </a>
+                  <a
+                    href="tel:+15551234567"
+                    className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+                      <span className="text-[10px]">#</span>
+                    </div>
+                    +1 (555) 123-4567
+                  </a>
+                </div>
+              </div>
             </div>
           </motion.div>
         )}
