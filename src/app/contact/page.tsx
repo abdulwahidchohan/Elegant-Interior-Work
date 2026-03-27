@@ -1,5 +1,6 @@
 "use client";
 
+import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 import { 
   Mail, 
@@ -11,8 +12,17 @@ import {
   Sparkles,
   Clock
 } from "lucide-react";
+import { pushToast } from "@/components/ui/toaster";
 
 const PREMIUM_EASE = [0.23, 1, 0.32, 1];
+
+const initialFormState = {
+  name: "",
+  email: "",
+  projectType: "residential-overhaul",
+  budgetRange: "10k-50k",
+  vision: "",
+};
 
 const contactMethods = [
   {
@@ -39,6 +49,51 @@ const contactMethods = [
 ];
 
 export default function ContactPage() {
+  const [formState, setFormState] = useState(initialFormState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const payload = {
+        name: formState.name,
+        email: formState.email,
+        service: formState.projectType,
+        message: `Budget range: ${formState.budgetRange}\n\nVision:\n${formState.vision}`,
+      };
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Contact form submission failed");
+      }
+
+      setFormState(initialFormState);
+      pushToast({
+        variant: "success",
+        title: "Brief received",
+        description: "We will contact you within one business day.",
+      });
+    } catch (error) {
+      console.error(error);
+      pushToast({
+        variant: "error",
+        title: "Could not submit request",
+        description: "Please try again in a few moments.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <main className="bg-background pt-32 pb-24 overflow-hidden">
       {/* Hero Section */}
@@ -124,13 +179,21 @@ export default function ContactPage() {
               transition={{ duration: 1, ease: PREMIUM_EASE as any }}
               className="bg-background border border-border/50 rounded-[3rem] p-8 md:p-16 shadow-2xl shadow-primary/5"
             >
-              <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-8" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground ml-1">Full Name</label>
                     <input
                       type="text"
                       placeholder="Jane Cooper"
+                      value={formState.name}
+                      onChange={(event) =>
+                        setFormState((current) => ({
+                          ...current,
+                          name: event.target.value,
+                        }))
+                      }
+                      required
                       className="w-full bg-secondary/30 border-none rounded-2xl px-6 py-4 focus:ring-1 focus:ring-primary outline-none transition-all"
                     />
                   </div>
@@ -139,6 +202,14 @@ export default function ContactPage() {
                     <input
                       type="email"
                       placeholder="jane@example.com"
+                      value={formState.email}
+                      onChange={(event) =>
+                        setFormState((current) => ({
+                          ...current,
+                          email: event.target.value,
+                        }))
+                      }
+                      required
                       className="w-full bg-secondary/30 border-none rounded-2xl px-6 py-4 focus:ring-1 focus:ring-primary outline-none transition-all"
                     />
                   </div>
@@ -150,12 +221,19 @@ export default function ContactPage() {
                     <select 
                       id="project-type"
                       title="Select Project Type"
+                      value={formState.projectType}
+                      onChange={(event) =>
+                        setFormState((current) => ({
+                          ...current,
+                          projectType: event.target.value,
+                        }))
+                      }
                       className="w-full bg-secondary/30 border-none rounded-2xl px-6 py-4 focus:ring-1 focus:ring-primary outline-none transition-all appearance-none cursor-pointer"
                     >
-                      <option>Residential Overhaul</option>
-                      <option>Commercial Space</option>
-                      <option>Interior Curation</option>
-                      <option>Other Enquiry</option>
+                      <option value="residential-overhaul">Residential Overhaul</option>
+                      <option value="commercial-space">Commercial Space</option>
+                      <option value="interior-curation">Interior Curation</option>
+                      <option value="other-enquiry">Other Enquiry</option>
                     </select>
                   </div>
                   <div className="space-y-2">
@@ -163,12 +241,19 @@ export default function ContactPage() {
                     <select 
                       id="budget-range"
                       title="Select Budget Range"
+                      value={formState.budgetRange}
+                      onChange={(event) =>
+                        setFormState((current) => ({
+                          ...current,
+                          budgetRange: event.target.value,
+                        }))
+                      }
                       className="w-full bg-secondary/30 border-none rounded-2xl px-6 py-4 focus:ring-1 focus:ring-primary outline-none transition-all appearance-none cursor-pointer"
                     >
-                      <option>$10k - $50k</option>
-                      <option>$50k - $200k</option>
-                      <option>$200k+</option>
-                      <option>Confidential</option>
+                      <option value="10k-50k">$10k - $50k</option>
+                      <option value="50k-200k">$50k - $200k</option>
+                      <option value="200k-plus">$200k+</option>
+                      <option value="confidential">Confidential</option>
                     </select>
                   </div>
                 </div>
@@ -178,15 +263,24 @@ export default function ContactPage() {
                   <textarea
                     rows={6}
                     placeholder="Tell us about your space..."
+                    value={formState.vision}
+                    onChange={(event) =>
+                      setFormState((current) => ({
+                        ...current,
+                        vision: event.target.value,
+                      }))
+                    }
+                    required
                     className="w-full bg-secondary/30 border-none rounded-[2rem] px-6 py-6 focus:ring-1 focus:ring-primary outline-none transition-all resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
+                  disabled={isSubmitting}
                   className="w-full flex items-center justify-center gap-4 py-5 bg-primary text-primary-foreground rounded-full font-bold tracking-widest uppercase hover:px-12 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] group"
                 >
-                  Dispatch Narrative
+                  {isSubmitting ? "Dispatching..." : "Dispatch Narrative"}
                   <Send className="w-5 h-5 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-500" />
                 </button>
               </form>

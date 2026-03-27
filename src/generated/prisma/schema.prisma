@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Project {
+  id               String   @id @default(cuid())
+  title            String
+  category         String
+  description      String
+  imageUrl         String
+  blurDataURL      String
+  beforeImageUrl   String?
+  afterImageUrl    String?
+  panoramaImageUrl String?
+  tags             String[]
+  year             Int
+  location         String
+  dominantColors   String[]
+  featured         Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@map("projects")
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  service   String
+  message   String
+  createdAt DateTime @default(now())
+
+  @@map("contacts")
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  content   String
+  rating    Int      @default(5)
+  featured  Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("testimonials")
+}

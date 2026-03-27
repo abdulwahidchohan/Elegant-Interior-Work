@@ -1,11 +1,19 @@
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { streamText, tool } from "ai";
+import { NextResponse } from "next/server";
 import { z } from "zod";
 
 export const runtime = "edge";
 
-const google = createGoogleGenerativeAI({
-  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? "",
+const chatPayloadSchema = z.object({
+  messages: z
+    .array(
+      z.object({
+        role: z.string(),
+        content: z.any(),
+      })
+    )
+    .min(1),
 });
 
 const fetchMaterialCostSchema = z.object({
@@ -85,21 +93,48 @@ const calculateEstimateTool: any = tool({
 });
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+  try {
+    const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json(
+        {
+          error:
+            "GOOGLE_GENERATIVE_AI_API_KEY is missing. Add it to your environment configuration.",
+        },
+        { status: 500 }
+      );
+    }
 
-  const result = await streamText({
-    model: google("gemini-2.0-flash") as any,
-    system: `You are an expert AI concierge for Elegant Interior Work, a luxury interior design studio. 
+    const payload = chatPayloadSchema.safeParse(await req.json());
+    if (!payload.success) {
+      return NextResponse.json(
+        { error: "Invalid chat payload." },
+        { status: 400 }
+      );
+    }
+
+    const google = createGoogleGenerativeAI({ apiKey });
+
+    const result = await streamText({
+      model: google("gemini-2.0-flash") as any,
+      system: `You are an expert AI concierge for Elegant Interior Work, a luxury interior design studio. 
 You help clients explore design options, understand project costs, and book consultations.
 Be sophisticated, knowledgeable, and inspire confidence. Use the available tools to provide accurate cost estimates.
 When users ask about materials or project costs, use the fetchMaterialCost or calculateEstimate tools.`,
-    messages,
-    tools: {
-      fetchMaterialCost: fetchMaterialCostTool,
-      calculateEstimate: calculateEstimateTool,
-    },
-    maxSteps: 5,
-  } as any);
+      messages: payload.data.messages,
+      tools: {
+        fetchMaterialCost: fetchMaterialCostTool,
+        calculateEstimate: calculateEstimateTool,
+      },
+      maxSteps: 5,
+    } as any);
 
-  return result.toTextStreamResponse();
+    return result.toTextStreamResponse();
+  } catch (error) {
+    console.error("Chat route failed", error);
+    return NextResponse.json(
+      { error: "Unable to process chat request right now." },
+      { status: 500 }
+    );
+  }
 }

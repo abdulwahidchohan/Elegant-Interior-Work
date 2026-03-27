@@ -3,24 +3,55 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, MapPin, Phone, Mail } from "lucide-react";
+import { pushToast } from "@/components/ui/toaster";
+
+const initialFormState = {
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+  service: "residential",
+};
 
 export function ContactSection() {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-    service: "residential",
-  });
+  const [formState, setFormState] = useState(initialFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+      });
+
+      if (!response.ok) {
+        throw new Error("Contact submission failed");
+      }
+
+      setFormState(initialFormState);
+      setIsSubmitted(true);
+      pushToast({
+        variant: "success",
+        title: "Message sent",
+        description: "Our design team will reply within 24 hours.",
+      });
+    } catch (error) {
+      console.error(error);
+      pushToast({
+        variant: "error",
+        title: "Unable to send message",
+        description: "Please try again in a moment.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -132,6 +163,7 @@ export function ContactSection() {
                   onChange={(e) =>
                     setFormState({ ...formState, message: e.target.value })
                   }
+                  required
                   rows={4}
                   className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none transition-colors resize-none"
                 />

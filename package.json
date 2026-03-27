@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prisma:generate": "prisma generate",
+    "prebuild": "prisma generate",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -14,6 +16,7 @@
     "@google/generative-ai": "^0.24.1",
     "@langchain/core": "^1.1.36",
     "@pinecone-database/pinecone": "^7.1.0",
+    "@prisma/adapter-pg": "^7.5.0",
     "@prisma/client": "^7.5.0",
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-dropdown-menu": "^2.1.2",
@@ -30,6 +33,7 @@
     "lucide-react": "^1.6.0",
     "next": "16.2.1",
     "next-themes": "^0.4.3",
+    "pg": "^8.20.0",
     "plaiceholder": "^3.0.0",
     "react": "^19",
     "react-dom": "^19",
